@@ -13,7 +13,7 @@ namespace TopProcessSvc.Controllers
         /// </summary>
         public IEnumerable<ProcessInfo> Get()
         {
-            return ProcessMonitor.GetProcesses();
+            return ProcessMonitor.Instance.GetProcesses();
         }
     }
 }

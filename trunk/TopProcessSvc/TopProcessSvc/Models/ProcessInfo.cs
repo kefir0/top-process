@@ -1,4 +1,6 @@
-﻿namespace TopProcessSvc.Models
+﻿using System;
+
+namespace TopProcessSvc.Models
 {
     public class ProcessInfo
     {
@@ -6,6 +8,10 @@
 
         public int Id { get; set; }
         
-        public int CpuUsage { get; set; }
+        public double CpuUsage { get; set; }
+
+        public DateTime LastUpdated { get; set; }
+        
+        public double TotalProcessorTime { get; set; }
     }
 }
