@@ -2,6 +2,9 @@
 
 namespace TopProcessSvc.Models
 {
+    /// <summary>
+    /// Process info DTO.
+    /// </summary>
     public class ProcessInfo
     {
         /// <summary>
