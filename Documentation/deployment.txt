@@ -1,0 +1,1 @@
+- enable Package Restore http://docs.nuget.org/docs/workflows/using-nuget-without-committing-packages
