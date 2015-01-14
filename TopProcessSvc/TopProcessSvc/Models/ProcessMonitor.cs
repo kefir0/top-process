@@ -37,7 +37,7 @@ namespace TopProcessSvc.Models
             {
                 var timeElapsed = DateTime.Now - old.LastUpdated;
                 var cpuTime = totalProcessorTime - old.TotalProcessorTime;
-                return cpuTime / timeElapsed.TotalMilliseconds * Environment.ProcessorCount;
+                return cpuTime / timeElapsed.TotalMilliseconds / Environment.ProcessorCount;
             }
             return 0;
         }
