@@ -8,13 +8,12 @@ namespace TopProcessSvc.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ProcessesController : ApiController
     {
-        //
-        // GET: /Processes/
-
-        public IEnumerable<Process> Get()
+        /// <summary>
+        ///     GET: /Processes/
+        /// </summary>
+        public IEnumerable<ProcessInfo> Get()
         {
-            yield return new Process {Name = "system", CpuUsage = 13, Id = 1};
-            yield return new Process {Name = "svchost.exe", CpuUsage = 23, Id = 20};
+            return ProcessMonitor.GetProcesses();
         }
     }
 }
