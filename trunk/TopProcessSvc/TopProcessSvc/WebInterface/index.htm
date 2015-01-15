@@ -1,11 +1,18 @@
-﻿<!-- TODO: Valid HTML -->
+﻿<!-- TODO: Validate HTML -->
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html >
 <head>
-    <title></title>
+    <script src="scripts/angular.min.js"></script>
+    <script src="scripts/jquery-2.1.3.min.js"></script>
+    <script src="scripts/ng-grid-2.0.12.min.js"></script>
+    <script src="scripts/controllers.js"></script>
+    <title>Process Monitoring</title>
 </head>
-<body>
-<h1>Hello!</h1>
+<body ng-app="topProcessApp" ng-controller="MainController">
+    <!-- TODO: Some bootstrap theme; Machine name in header; error display; loading indicator; filter text box -->
+    <h1>{{processes.ServerName}} process list</h1>
+    <p>
+        <div ng-grid="processesGrid"></div>
+    </p>
 </body>
 </html>

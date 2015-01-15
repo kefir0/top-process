@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using TopProcessSvc.Models;
@@ -11,9 +11,13 @@ namespace TopProcessSvc.Controllers
         /// <summary>
         ///     GET: /Processes/
         /// </summary>
-        public IEnumerable<ProcessInfo> Get()
+        public ProcessesInfo Get()
         {
-            return ProcessMonitor.Instance.GetProcesses();
+            return new ProcessesInfo
+            {
+                ServerName = Environment.MachineName,
+                Processes = ProcessMonitor.Instance.GetProcesses()
+            };
         }
     }
 }
