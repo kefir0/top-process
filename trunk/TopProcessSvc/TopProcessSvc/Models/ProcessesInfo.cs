@@ -8,13 +8,28 @@ namespace TopProcessSvc.Models
     public class ProcessesInfo
     {
         /// <summary>
-        /// Gets or sets the name of the server.
+        /// Gets or sets the cpu usage, from 0 to 1.
         /// </summary>
-        public string ServerName { get; set; }
+        public double CpuUsage { get; set; }
+
+        /// <summary>
+        /// Gets or sets the total memory amount, in bytes.
+        /// </summary>
+        public double MemoryTotal { get; set; }
+
+        /// <summary>
+        /// Gets or sets the used memory amount, in bytes.
+        /// </summary>
+        public double MemoryUsed { get; set; }
 
         /// <summary>
         /// Gets or sets the processes.
         /// </summary>
         public IEnumerable<ProcessInfo> Processes { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name of the server.
+        /// </summary>
+        public string ServerName { get; set; }
     }
 }
