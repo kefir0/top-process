@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TopProcessSvc.Models
+﻿namespace TopProcessSvc.Models
 {
     /// <summary>
     /// Process info DTO.
