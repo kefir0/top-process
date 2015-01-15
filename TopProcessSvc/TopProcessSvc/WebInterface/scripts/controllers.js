@@ -1,4 +1,4 @@
-﻿var topProcessApp = angular.module('topProcessApp', []);
+﻿var topProcessApp = angular.module('topProcessApp', ['ngGrid']);
 
 topProcessApp.controller('MainController', function ($scope, $http) {
     $scope.loading = true;
@@ -10,6 +10,9 @@ topProcessApp.controller('MainController', function ($scope, $http) {
                 $scope.error = "";
                 $scope.loading = false;
                 $scope.processes = data;
+                setTimeout(function () {
+                    $(document).resize();
+                }, 300); // fix grid columns
             })
             .error(function (err) {
                 $scope.loading = false;
@@ -19,9 +22,10 @@ topProcessApp.controller('MainController', function ($scope, $http) {
     };
 
     $scope.processesGrid = {
-        data: 'processes.Processes | filter:processFilter',
+        data: 'processes.Processes',
         enableColumnResize: true,
-        enableRowSelection: true
+        enableRowSelection: true,
+        //plugins: [new ngGridFlexibleHeightPlugin()]
     };
 
     $scope.LoadBranches();

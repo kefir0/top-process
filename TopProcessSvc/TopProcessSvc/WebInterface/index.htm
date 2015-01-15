@@ -1,18 +1,21 @@
 ﻿<!-- TODO: Validate HTML -->
 
 <html >
-<head>
-    <script src="scripts/angular.min.js"></script>
-    <script src="scripts/jquery-2.1.3.min.js"></script>
-    <script src="scripts/ng-grid-2.0.12.min.js"></script>
-    <script src="scripts/controllers.js"></script>
-    <title>Process Monitoring</title>
-</head>
-<body ng-app="topProcessApp" ng-controller="MainController">
-    <!-- TODO: Some bootstrap theme; Machine name in header; error display; loading indicator; filter text box -->
-    <h1>{{processes.ServerName}} process list</h1>
-    <p>
-        <div ng-grid="processesGrid"></div>
-    </p>
-</body>
+    <head>
+        <link rel="stylesheet" type="text/css" href="styles/ng-grid.min.css" />
+        <script src="scripts/jquery-2.1.3.min.js"></script>
+        <script src="scripts/angular.min.js"></script>
+        <script src="scripts/ng-grid-2.0.12.min.js"></script>
+        <script src="scripts/ng-grid-flexible-height.js"></script>
+        <script src="scripts/controllers.js"></script>
+        <title>Process Monitoring</title>
+    </head>
+
+    <body ng-app="topProcessApp" ng-controller="MainController">
+        <!-- TODO: Some bootstrap theme; Machine name in header; error display; loading indicator; filter text box; CPU and memory graphs -->
+        <h1>{{processes.ServerName}} process list</h1>
+        <p>
+            <div ng-grid="processesGrid" style="height: 80vh;"></div>
+        </p>
+    </body>
 </html>
