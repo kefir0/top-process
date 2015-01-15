@@ -1,1 +1,2 @@
 - enable Package Restore http://docs.nuget.org/docs/workflows/using-nuget-without-committing-packages
+- TODO: elevate account privileges to see all processes info
