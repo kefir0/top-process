@@ -23,11 +23,6 @@ namespace TopProcessSvc.Models
         public double CpuUsage { get; set; }
 
         /// <summary>
-        /// Gets or sets the last updated time.
-        /// </summary>
-        public DateTime LastUpdated { get; set; }
-
-        /// <summary>
         /// Gets or sets the total processor time, in milliseconds.
         /// </summary>
         public double TotalProcessorTime { get; set; }
