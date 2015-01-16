@@ -5,7 +5,7 @@ topProcessApp.controller('MainController', function ($scope, $http) {
     $scope.processFilter = '';
 
     $scope.LoadBranches = function () {
-        $http.get("/api/Processes")
+        $http.get("../api/Processes")
             .success(function (data) {
                 $scope.error = "";
                 $scope.loading = false;

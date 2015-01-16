@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Management;
 using System.Threading;
 using Timer = System.Timers.Timer;
 
@@ -16,9 +17,9 @@ namespace TopProcessSvc.Models
             // - avoid calling Process.GetProcesses on each request for performance
             // - calculate CPU usage in percents
             _updateTimer = new Timer(1000); // once a second
-            _updateTimer.Elapsed += (sender, args) => UpdateProcesses();
+            _updateTimer.Elapsed += (sender, args) => Update();
             _updateTimer.Start();
-            UpdateProcesses();
+            Update();
         }
 
         public static ProcessMonitor Instance
@@ -26,9 +27,13 @@ namespace TopProcessSvc.Models
             get { return InstanceLazy.Value; }
         }
 
-        public IEnumerable<ProcessInfo> GetProcesses()
+        public Int64 TotalMemory { get; private set; }
+        public Int64 UsedMemory { get; private set; }
+        public float CpuUsage { get; private set; }
+
+        public IEnumerable<ProcessInfo> Processes
         {
-            return _processes.Values;
+            get { return _processes.Values; }
         }
 
         private double GetCpuUsage(int id, double totalProcessorTime)
@@ -70,7 +75,7 @@ namespace TopProcessSvc.Models
             };
         }
 
-        private void UpdateProcesses()
+        private void Update()
         {
             // Timer events occur on arbitrary ThreadPool threads
             // Technically, next timer event can occur before previous update has been finished
@@ -84,6 +89,8 @@ namespace TopProcessSvc.Models
                 if (lockWasTaken)
                 {
                     _processes = Process.GetProcesses().Select(ProcessToProcessInfo).ToDictionary(x => x.Id, x => x);
+                    UpdateMemoryUsage();
+                    UpdateCpuUsage();
                     _lastUpdated = DateTime.Now;
                 }
             }
@@ -96,7 +103,32 @@ namespace TopProcessSvc.Models
             }
         }
 
+        private void UpdateCpuUsage()
+        {
+            CpuUsage = _cpuCounter.NextValue() / 100;
+        }
+
+        private void UpdateMemoryUsage()
+        {
+            var mgtObj = new ManagementObjectSearcher("Select FreePhysicalMemory, TotalVisibleMemorySize from Win32_OperatingSystem");
+            var result = mgtObj.Get().OfType<ManagementObject>().FirstOrDefault();
+            if (result != null)
+            {
+                TotalMemory = Convert.ToInt64(result["TotalVisibleMemorySize"]);
+                var free = Convert.ToInt64(result["FreePhysicalMemory"]);
+                UsedMemory = TotalMemory - free;
+            }
+        }
+
         private static readonly Lazy<ProcessMonitor> InstanceLazy = new Lazy<ProcessMonitor>(() => new ProcessMonitor());
+
+        private readonly PerformanceCounter _cpuCounter = new PerformanceCounter
+        {
+            CategoryName = "Processor",
+            CounterName = "% Processor Time",
+            InstanceName = "_Total"
+        };
+
         private readonly object _syncRoot = new object();
 
         // ReSharper disable once PrivateFieldCanBeConvertedToLocalVariable

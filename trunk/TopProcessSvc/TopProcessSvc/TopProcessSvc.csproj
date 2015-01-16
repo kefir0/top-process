@@ -58,6 +58,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Extensions">
       <HintPath>..\packages\Microsoft.Net.Http.2.2.28\lib\net45\System.Net.Http.Extensions.dll</HintPath>
@@ -132,6 +133,7 @@
     <Compile Include="Models\ProcessInfo.cs" />
     <Compile Include="Models\ProcessMonitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="WebInterface\scripts\highcharts.src.js" />
     <Content Include="WebInterface\scripts\ng-grid-flexible-height.js" />
   </ItemGroup>
   <ItemGroup>
