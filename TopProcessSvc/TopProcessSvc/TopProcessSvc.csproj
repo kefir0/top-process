@@ -133,7 +133,6 @@
     <Compile Include="Models\ProcessInfo.cs" />
     <Compile Include="Models\ProcessMonitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="WebInterface\scripts\ng-grid-flexible-height.js" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
