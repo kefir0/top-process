@@ -1,17 +1,18 @@
 ﻿using Microsoft.AspNet.SignalR;
 using Microsoft.Owin;
+using Microsoft.Owin.Cors;
 using Owin;
 using TopProcessSvc;
 
-[assembly: OwinStartup(typeof (AppStartup))]
+[assembly: OwinStartup(typeof (OwinStartup))]
 
 namespace TopProcessSvc
 {
-    public class AppStartup
+    public class OwinStartup
     {
         public void Configuration(IAppBuilder app)
         {
-            // CORS is enabled by default
+            app.UseCors(CorsOptions.AllowAll);
             app.MapSignalR(new HubConfiguration());
         }
     }
