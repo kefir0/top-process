@@ -129,9 +129,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CpuMonitor.cs" />
+    <Compile Include="Models\MemoryMonitor.cs" />
     <Compile Include="Models\ProcessesInfo.cs" />
     <Compile Include="Models\ProcessInfo.cs" />
     <Compile Include="Models\ProcessMonitor.cs" />
+    <Compile Include="Models\SystemMonitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
