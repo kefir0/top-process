@@ -11,11 +11,11 @@ topProcessApp.controller('MainController', function ($scope, $http) {
                 $scope.error = "";
                 $scope.loading = false;
                 $scope.processes = data;
+                setTimeout(function () {$(document).resize();}, 400); // fix grid layout
             })
             .error(function (err) {
                 $scope.loading = false;
-                $scope.error = "Failed to load processes";
-                $scope.errorDetails = err;
+                $scope.error = "Failed to load process info:" + err;
             });
     };
 
