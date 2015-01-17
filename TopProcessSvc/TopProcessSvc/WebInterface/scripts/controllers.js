@@ -1,6 +1,10 @@
-﻿// change these to connect to remotely deployed service
-var serviceUrl = "../api/SystemInfo";
-var signalrUrl = "../signalr";
+﻿// change this to connect to remotely deployed service
+// for example, baseUrl for IIS deployment with default settings would look like "http://server/TopProcessSvc"
+var baseUrl = "..";
+
+// derived urls
+var serviceUrl = baseUrl + "/api/SystemInfo";
+var signalrUrl = baseUrl + "/signalr";
 
 var topProcessApp = angular.module('topProcessApp', ['ngGrid']);
 
