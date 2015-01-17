@@ -13,14 +13,14 @@ namespace TopProcessSvc.Controllers
         /// </summary>
         public ProcessesInfo Get()
         {
-            var processMonitor = ProcessMonitor.Instance;
+            var processMonitor = SystemMonitor.Instance;
             return new ProcessesInfo
             {
                 ServerName = Environment.MachineName,
                 Processes = processMonitor.Processes,
-                MemoryTotal = processMonitor.TotalMemory,
-                MemoryUsed = processMonitor.UsedMemory,
-                CpuUsage = processMonitor.CpuUsage
+                MemoryTotal = processMonitor.Memory.TotalMemory,
+                MemoryUsed = processMonitor.Memory.UsedMemory,
+                CpuUsage = processMonitor.Cpu.CpuUsage
             };
         }
     }
