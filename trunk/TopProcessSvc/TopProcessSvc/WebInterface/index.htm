@@ -12,8 +12,14 @@
     <body ng-app="topProcessApp" ng-controller="MainController">
         <!-- TODO: Some bootstrap theme; Machine name in header; error display; loading indicator; filter text box; CPU and memory graphs -->
         <h1>{{processes.ServerName}} process list</h1>
-        CPU Load: {{(processes.CpuUsage*100).toFixed(0)}}% <br/>
-        Memory: {{(processes.MemoryUsed/1024/1024).toFixed(1)}} GB used of {{(processes.MemoryTotal/1024/1024).toFixed(1)}} GB total
+        <div>
+            CPU Load: {{(processes.CpuUsage*100).toFixed(0)}}% <br />
+            Memory: {{(processes.MemoryUsed/1024/1024).toFixed(1)}} GB used of {{(processes.MemoryTotal/1024/1024).toFixed(1)}} GB total
+            <div style="float: right">
+                <input type="checkbox" ng-model="autoRefresh" id="autoRefreshCheck" />
+                <label for="autoRefreshCheck">Auto update</label>
+            </div>
+        </div>
         <p>
             <div ng-grid="processesGrid" style="height: 80vh;"></div>
         </p>
