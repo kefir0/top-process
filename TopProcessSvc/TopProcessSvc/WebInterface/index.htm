@@ -12,6 +12,9 @@
 
     <body ng-app="topProcessApp" ng-controller="MainController">
         <div class="mainContent">
+            <h1 class="center">System Monitor</h1>
+            <hr/>
+
             <!-- Initial loading indicator -->
             <div ng-show="loading">
                 Loading process info...
@@ -23,15 +26,14 @@
 
             <!-- Main content -->
             <div ng-show="!loading && !error">
-                <!-- TODO: Some nice UI; error display; loading indicator;-->
-                <h1>{{processes.ServerName}} process list</h1>
                 <div>
-                    CPU Load: <b>{{(processes.CpuUsage*100).toFixed(0)}}% </b><br />
-                    Memory: <b>{{(processes.MemoryUsed/1024/1024).toFixed(1)}} GB</b> used of <b>{{(processes.MemoryTotal/1024/1024).toFixed(1)}} GB</b> total
+                    Machine name: <b>{{processes.ServerName}}</b><br/>
                     <div style="float: right">
                         <input type="checkbox" ng-model="autoRefresh" id="autoRefreshCheck" />
                         <label for="autoRefreshCheck">Auto update</label>
                     </div>
+                    CPU Load: <b>{{(processes.CpuUsage*100).toFixed(0)}}% </b><br />
+                    Memory: <b>{{(processes.MemoryUsed/1024/1024).toFixed(1)}} GB</b> used of <b>{{(processes.MemoryTotal/1024/1024).toFixed(1)}} GB</b> total
                 </div>
                 <p>
                     <div ng-grid="processesGrid" class="processesGrid"></div>
