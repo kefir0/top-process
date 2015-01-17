@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using Microsoft.AspNet.SignalR;
+using Microsoft.AspNet.SignalR.Hubs;
 using Timer = System.Timers.Timer;
 
 namespace TopProcessSvc.Models
@@ -20,6 +22,9 @@ namespace TopProcessSvc.Models
             _updateTimer = new Timer(1000); // once a second
             _updateTimer.Elapsed += (sender, args) => Update();
             _updateTimer.Start();
+
+            _notifications = new NotificationDispatcher(this);
+
             Update();
         }
 
@@ -54,6 +59,7 @@ namespace TopProcessSvc.Models
                     _cpu.Update();
                     _memory.Update();
                     _processes.Update();
+                    _notifications.Update();
                 }
             }
             finally
@@ -70,6 +76,7 @@ namespace TopProcessSvc.Models
         private readonly CpuMonitor _cpu = new CpuMonitor();
         private readonly MemoryMonitor _memory = new MemoryMonitor();
         private readonly ProcessMonitor _processes = new ProcessMonitor();
+        private readonly NotificationDispatcher _notifications;
         private readonly object _syncRoot = new object();
 
         // ReSharper disable once PrivateFieldCanBeConvertedToLocalVariable

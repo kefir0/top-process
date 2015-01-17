@@ -22,3 +22,11 @@
             border: 1px solid gray;
             height: 70vh;
         }
+
+        .notification {
+            border: 1px coral ridge;
+            padding: 10px;
+            border-radius: 5px;
+            background: yellow;
+            margin-bottom: 10px;
+        }

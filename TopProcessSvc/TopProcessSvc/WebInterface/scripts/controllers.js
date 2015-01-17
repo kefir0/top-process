@@ -1,5 +1,6 @@
-﻿// change this to connect to remotely deployed service
+﻿// change these to connect to remotely deployed service
 var serviceUrl = "../api/Processes";
+var signalrUrl = "../signalr";
 
 var topProcessApp = angular.module('topProcessApp', ['ngGrid']);
 
@@ -42,4 +43,20 @@ topProcessApp.controller('MainController', function ($scope, $http) {
     };
 
     $scope.refreshInfo();
+
+    jQuery.getScript(signalrUrl + "/hubs", function () {
+        // Set up SignalR
+        $.connection.hub.url = signalrUrl;
+
+        // Declare a proxy to reference the hub. 
+        var hub = $.connection.notificationHub;
+
+        // Create a function that the hub can call to broadcast messages.
+        hub.client.broadcastMessage = function (message) {
+            $scope.notification = message + " (" + new Date().toLocaleTimeString() + ")";
+        };
+
+        $.connection.hub.start();
+    });
+
 });
