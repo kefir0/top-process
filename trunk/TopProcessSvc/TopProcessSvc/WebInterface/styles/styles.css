@@ -1,0 +1,24 @@
+        body {
+            background-image: url('background.jpg');
+            background-repeat: repeat;
+        }
+
+        .mainContent {
+            width: 75%;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            background-image: url('opacity_90.png'); /*background-color: rgba(255, 255, 255, 0.7);*/
+            box-shadow: 0px 0px 20px black;
+            padding: 10px 40px 50px 40px;
+        }
+
+        .center {
+            display: table;
+            margin: auto;
+        }
+
+        .processesGrid {
+            border: 1px solid gray;
+            height: 70vh;
+        }
