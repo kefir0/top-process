@@ -37,13 +37,13 @@
             <!-- Main content -->
             <div ng-show="!loading && !error">
                 <div>
-                    Machine name: <b>{{processes.ServerName}}</b><br/>
+                    Machine name: <b>{{systemInfo.ServerName}}</b><br/>
                     <div style="float: right">
                         <input type="checkbox" ng-model="autoRefresh" id="autoRefreshCheck" />
                         <label for="autoRefreshCheck">Auto update</label>
                     </div>
-                    CPU Load: <b>{{(processes.CpuUsage*100).toFixed(0)}}% </b><br />
-                    Memory: <b>{{(processes.MemoryUsed/1024/1024).toFixed(1)}} GB</b> used of <b>{{(processes.MemoryTotal/1024/1024).toFixed(1)}} GB</b> total
+                    CPU Load: <b>{{(systemInfo.CpuUsage*100).toFixed(0)}}% </b><br />
+                    Memory: <b>{{(systemInfo.MemoryUsed/1024/1024).toFixed(1)}} GB</b> used of <b>{{(systemInfo.MemoryTotal/1024/1024).toFixed(1)}} GB</b> total
                 </div>
                 <p>
                     <div ng-grid="processesGrid" class="processesGrid"></div>

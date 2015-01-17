@@ -4,6 +4,9 @@ using System.Management;
 
 namespace TopProcessSvc.Models
 {
+    /// <summary>
+    /// Monitors memory usage.
+    /// </summary>
     public class MemoryMonitor
     {
         /// <summary>

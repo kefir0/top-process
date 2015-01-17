@@ -5,7 +5,7 @@ namespace TopProcessSvc.Models
     /// <summary>
     /// Server processes DTO.
     /// </summary>
-    public class ProcessesInfo
+    public class SystemInfo
     {
         /// <summary>
         /// Gets or sets the cpu usage, from 0 to 1.
