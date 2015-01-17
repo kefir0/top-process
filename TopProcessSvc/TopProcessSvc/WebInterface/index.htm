@@ -26,8 +26,8 @@
                 <!-- TODO: Some nice UI; error display; loading indicator;-->
                 <h1>{{processes.ServerName}} process list</h1>
                 <div>
-                    CPU Load: {{(processes.CpuUsage*100).toFixed(0)}}% <br />
-                    Memory: {{(processes.MemoryUsed/1024/1024).toFixed(1)}} GB used of {{(processes.MemoryTotal/1024/1024).toFixed(1)}} GB total
+                    CPU Load: <b>{{(processes.CpuUsage*100).toFixed(0)}}% </b><br />
+                    Memory: <b>{{(processes.MemoryUsed/1024/1024).toFixed(1)}} GB</b> used of <b>{{(processes.MemoryTotal/1024/1024).toFixed(1)}} GB</b> total
                     <div style="float: right">
                         <input type="checkbox" ng-model="autoRefresh" id="autoRefreshCheck" />
                         <label for="autoRefreshCheck">Auto update</label>

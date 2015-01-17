@@ -90,6 +90,7 @@ namespace TopProcessSvc.Models
                 Name = process.ProcessName,
                 TotalProcessorTime = totalProcessorTime,
                 CpuUsage = GetCpuUsage(process.Id, totalProcessorTime),
+                WorkingSet = process.WorkingSet64 / 1024
             };
         }
 

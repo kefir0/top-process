@@ -24,5 +24,10 @@
         /// Gets or sets the total processor time, in milliseconds.
         /// </summary>
         public double TotalProcessorTime { get; set; }
+
+        /// <summary>
+        /// Gets the amount of physical memory allocated for the associated process, in kilobytes.
+        /// </summary>
+        public long WorkingSet { get; set; }
     }
 }
