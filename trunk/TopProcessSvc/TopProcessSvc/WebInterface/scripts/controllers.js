@@ -36,7 +36,8 @@ topProcessApp.controller('MainController', function ($scope, $http) {
         columnDefs: [
             { field: 'Name', displayName: 'Name'},
             { field: 'Id', displayName: 'PID'},
-            { field: 'CpuUsage', displayName: 'CPU, %', cellTemplate: '<div class="ngCellText colt{{$index}}">{{(row.getProperty(col.field)*100).toFixed(1)}}</div>' }
+            { field: 'CpuUsage', displayName: 'CPU, %', cellTemplate: '<div class="ngCellText colt{{$index}}">{{(row.getProperty(col.field)*100).toFixed(1)}}</div>' },
+            { field: 'WorkingSet', displayName: 'Memory, MB', cellTemplate: '<div class="ngCellText colt{{$index}}">{{(row.getProperty(col.field)/1024).toFixed(1)}}</div>' }
         ]
     };
 
