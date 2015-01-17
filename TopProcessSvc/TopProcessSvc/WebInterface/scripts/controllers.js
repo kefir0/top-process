@@ -1,4 +1,7 @@
-﻿var topProcessApp = angular.module('topProcessApp', ['ngGrid']);
+﻿// change this to connect to remotely deployed service
+var serviceUrl = "../api/Processes";
+
+var topProcessApp = angular.module('topProcessApp', ['ngGrid']);
 
 topProcessApp.controller('MainController', function ($scope, $http) {
     $scope.loading = true;
@@ -6,7 +9,7 @@ topProcessApp.controller('MainController', function ($scope, $http) {
     $scope.autoRefresh = true;
 
     $scope.loadBranches = function () {
-        $http.get("../api/Processes")
+        $http.get(serviceUrl)
             .success(function (data) {
                 $scope.error = "";
                 $scope.loading = false;
@@ -15,7 +18,7 @@ topProcessApp.controller('MainController', function ($scope, $http) {
             })
             .error(function (err) {
                 $scope.loading = false;
-                $scope.error = "Failed to load process info:" + err;
+                $scope.error = "Failed to load process info: " + err;
             });
     };
 
@@ -30,6 +33,11 @@ topProcessApp.controller('MainController', function ($scope, $http) {
         data: 'processes.Processes',
         enableColumnResize: true,
         enableRowSelection: false,
+        columnDefs: [
+            { field: 'Name', displayName: 'Name'},
+            { field: 'Id', displayName: 'PID'},
+            { field: 'CpuUsage', displayName: 'CPU, %', cellTemplate: '<div class="ngCellText colt{{$index}}">{{(row.getProperty(col.field)*100).toFixed(1)}}</div>' }
+        ]
     };
 
     $scope.refreshInfo();
