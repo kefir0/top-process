@@ -29,7 +29,7 @@ topProcessApp.controller('MainController', function ($scope, $http) {
     $scope.processesGrid = {
         data: 'processes.Processes',
         enableColumnResize: true,
-        enableRowSelection: true,
+        enableRowSelection: false,
     };
 
     $scope.refreshInfo();

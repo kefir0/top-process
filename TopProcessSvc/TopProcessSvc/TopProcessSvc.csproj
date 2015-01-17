@@ -138,6 +138,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="WebInterface\styles\background.jpg" />
     <Content Include="WebInterface\scripts\angular.js" />
     <Content Include="WebInterface\scripts\angular.min.js" />
     <Content Include="Global.asax" />
@@ -154,6 +155,8 @@
     <Content Include="WebInterface\ReadMe.txt" />
     <Content Include="WebInterface\scripts\ng-grid-2.0.12.min.js" />
     <Content Include="WebInterface\styles\ng-grid.min.css" />
+    <Content Include="WebInterface\styles\opacity_90.png" />
+    <Content Include="WebInterface\styles\styles.css" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
