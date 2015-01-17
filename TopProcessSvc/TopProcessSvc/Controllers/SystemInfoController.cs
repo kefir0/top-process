@@ -4,15 +4,18 @@ using TopProcessSvc.Models;
 
 namespace TopProcessSvc.Controllers
 {
-    public class ProcessesController : ApiController
+    /// <summary>
+    /// System information API controller.
+    /// </summary>
+    public class SystemInfoController : ApiController
     {
         /// <summary>
-        ///     GET: /Processes/
+        ///     GET: /SystemInfo/
         /// </summary>
-        public ProcessesInfo Get()
+        public SystemInfo Get()
         {
             var processMonitor = SystemMonitor.Instance;
-            return new ProcessesInfo
+            return new SystemInfo
             {
                 ServerName = Environment.MachineName,
                 Processes = processMonitor.Processes,

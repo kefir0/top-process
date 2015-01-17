@@ -6,13 +6,22 @@ using System.Linq;
 
 namespace TopProcessSvc.Models
 {
+    /// <summary>
+    /// Monitors running processes.
+    /// </summary>
     public class ProcessMonitor
     {
+        /// <summary>
+        /// Gets the processes.
+        /// </summary>
         public IEnumerable<ProcessInfo> Processes
         {
             get { return _processes.Values; }
         }
 
+        /// <summary>
+        /// Updates this instance.
+        /// </summary>
         public void Update()
         {
             _processes = Process.GetProcesses().Select(ProcessToProcessInfo).ToDictionary(x => x.Id, x => x);

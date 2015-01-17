@@ -5,8 +5,16 @@ using Microsoft.AspNet.SignalR.Hubs;
 
 namespace TopProcessSvc.Models
 {
+    /// <summary>
+    /// Sends push notifications according to SystemMonitor data.
+    /// </summary>
     public class NotificationDispatcher
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NotificationDispatcher"/> class.
+        /// </summary>
+        /// <param name="systemMonitor">The system monitor to analyze data from.</param>
+        /// <exception cref="System.ArgumentNullException">systemMonitor</exception>
         public NotificationDispatcher(SystemMonitor systemMonitor)
         {
             if (systemMonitor == null)
@@ -17,8 +25,8 @@ namespace TopProcessSvc.Models
             _systemMonitor = systemMonitor;
 
             // Defaults
-            CpuUsageLimit = 0;// 0.8;
-            MemoryUsageLimit = 0;// 0.8;
+            CpuUsageLimit = 0.8;
+            MemoryUsageLimit = 0.8;
         }
 
         /// <summary>

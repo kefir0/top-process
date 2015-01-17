@@ -1,5 +1,5 @@
 ﻿// change these to connect to remotely deployed service
-var serviceUrl = "../api/Processes";
+var serviceUrl = "../api/SystemInfo";
 var signalrUrl = "../signalr";
 
 var topProcessApp = angular.module('topProcessApp', ['ngGrid']);
@@ -14,7 +14,7 @@ topProcessApp.controller('MainController', function ($scope, $http) {
             .success(function (data) {
                 $scope.error = "";
                 $scope.loading = false;
-                $scope.processes = data;
+                $scope.systemInfo = data;
                 setTimeout(function () {$(document).resize();}, 400); // fix grid layout
             })
             .error(function (err) {
@@ -31,7 +31,7 @@ topProcessApp.controller('MainController', function ($scope, $http) {
     }
 
     $scope.processesGrid = {
-        data: 'processes.Processes',
+        data: 'systemInfo.Processes',
         enableColumnResize: true,
         enableRowSelection: false,
         columnDefs: [

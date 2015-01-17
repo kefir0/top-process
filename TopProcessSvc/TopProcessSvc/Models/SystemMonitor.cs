@@ -1,19 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
-using Microsoft.AspNet.SignalR;
-using Microsoft.AspNet.SignalR.Hubs;
 using Timer = System.Timers.Timer;
 
 namespace TopProcessSvc.Models
 {
+    /// <summary>
+    /// Monitors multiple aspects of system performance.
+    /// Updates itself once a second.
+    /// </summary>
     public class SystemMonitor
     {
+        /// <summary>
+        /// Gets the singleton instance.
+        /// </summary>
         public static SystemMonitor Instance
         {
             get { return InstanceLazy.Value; }
         }
 
+        /// <summary>
+        /// Prevents a default instance of the <see cref="SystemMonitor"/> class from being created.
+        /// </summary>
         private SystemMonitor()
         {
             // Use timer for two reasons:
@@ -28,16 +36,25 @@ namespace TopProcessSvc.Models
             Update();
         }
 
+        /// <summary>
+        /// Gets the cpu info.
+        /// </summary>
         public CpuMonitor Cpu
         {
             get { return _cpu; }
         }
 
+        /// <summary>
+        /// Gets the memory info.
+        /// </summary>
         public MemoryMonitor Memory
         {
             get { return _memory; }
         }
 
+        /// <summary>
+        /// Gets the processes.
+        /// </summary>
         public IEnumerable<ProcessInfo> Processes
         {
             get { return _processes.Processes; }

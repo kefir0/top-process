@@ -20,7 +20,9 @@
 
         .processesGrid {
             border: 1px solid gray;
-            height: 70vh;
+            height: 400px;
+            min-height: 200px;
+            height: calc(100vh - 300px);
         }
 
         .notification {
