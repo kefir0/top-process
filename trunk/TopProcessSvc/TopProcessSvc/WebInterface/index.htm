@@ -1,14 +1,10 @@
-﻿<!-- TODO: Validate HTML -->
-
-<html >
+﻿<!DOCTYPE html>
+<html>
     <head>
         <link rel="stylesheet" type="text/css" href="styles/ng-grid.min.css" />
         <script src="scripts/jquery-2.1.3.min.js"></script>
         <script src="scripts/angular.js"></script>
         <script src="scripts/ng-grid-2.0.12.min.js"></script>
-        <script src="scripts/ng-grid-flexible-height.js"></script>
-        <script src="scripts/highcharts.src.js"></script>
-        <script src="scripts/highcharts-ng.js"></script>
         <script src="scripts/controllers.js"></script>
         <title>Process Monitoring</title>
     </head>
@@ -16,11 +12,10 @@
     <body ng-app="topProcessApp" ng-controller="MainController">
         <!-- TODO: Some bootstrap theme; Machine name in header; error display; loading indicator; filter text box; CPU and memory graphs -->
         <h1>{{processes.ServerName}} process list</h1>
+        CPU Load: {{(processes.CpuUsage*100).toFixed(0)}}% <br/>
+        Memory: {{(processes.MemoryUsed/1024/1024).toFixed(1)}} GB used of {{(processes.MemoryTotal/1024/1024).toFixed(1)}} GB total
         <p>
             <div ng-grid="processesGrid" style="height: 80vh;"></div>
-        </p>
-        <p>
-            <highchart config="memoryChart"></highchart>
         </p>
     </body>
 </html>

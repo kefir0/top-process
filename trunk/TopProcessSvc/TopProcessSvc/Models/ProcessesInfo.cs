@@ -13,14 +13,14 @@ namespace TopProcessSvc.Models
         public double CpuUsage { get; set; }
 
         /// <summary>
-        /// Gets or sets the total memory amount, in bytes.
+        /// Gets or sets the total memory amount, in kilobytes.
         /// </summary>
-        public double MemoryTotal { get; set; }
+        public long MemoryTotal { get; set; }
 
         /// <summary>
-        /// Gets or sets the used memory amount, in bytes.
+        /// Gets or sets the used memory amount, in kilobytes.
         /// </summary>
-        public double MemoryUsed { get; set; }
+        public long MemoryUsed { get; set; }
 
         /// <summary>
         /// Gets or sets the processes.

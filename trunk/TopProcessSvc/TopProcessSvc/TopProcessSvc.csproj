@@ -133,8 +133,6 @@
     <Compile Include="Models\ProcessInfo.cs" />
     <Compile Include="Models\ProcessMonitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="WebInterface\scripts\highcharts-ng.js" />
-    <Content Include="WebInterface\scripts\highcharts.src.js" />
     <Content Include="WebInterface\scripts\ng-grid-flexible-height.js" />
   </ItemGroup>
   <ItemGroup>

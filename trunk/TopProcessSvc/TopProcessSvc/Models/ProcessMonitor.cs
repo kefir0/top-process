@@ -27,10 +27,24 @@ namespace TopProcessSvc.Models
             get { return InstanceLazy.Value; }
         }
 
-        public Int64 TotalMemory { get; private set; }
-        public Int64 UsedMemory { get; private set; }
+        /// <summary>
+        /// Gets the total physical memory amount, in kilobytes.
+        /// </summary>
+        public long TotalMemory { get; private set; }
+
+        /// <summary>
+        /// Gets the used memory amount, in kilobytes.
+        /// </summary>
+        public long UsedMemory { get; private set; }
+
+        /// <summary>
+        /// Gets the cpu usage, from 0 to 1.
+        /// </summary>
         public float CpuUsage { get; private set; }
 
+        /// <summary>
+        /// Gets current processes.
+        /// </summary>
         public IEnumerable<ProcessInfo> Processes
         {
             get { return _processes.Values; }
@@ -55,10 +69,14 @@ namespace TopProcessSvc.Models
                 var totalProcessorTime = process.TotalProcessorTime;
                 return totalProcessorTime;
             }
+            catch (InvalidOperationException)
+            {
+                // Possible if process have exited while we retrieve info
+                return TimeSpan.Zero;
+            }
             catch (Win32Exception)
             {
                 // Access denied exception possible for some processes depending on current user account
-                // TODO: Update deployment documentation to elevate privileges
                 return TimeSpan.Zero;
             }
         }
