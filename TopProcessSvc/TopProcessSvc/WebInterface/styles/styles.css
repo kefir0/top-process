@@ -30,3 +30,8 @@
             background: yellow;
             margin-bottom: 10px;
         }
+
+        .closeButton {
+            font-weight: bold;
+            text-decoration: none;
+        }

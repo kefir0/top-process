@@ -59,4 +59,7 @@ topProcessApp.controller('MainController', function ($scope, $http) {
         $.connection.hub.start();
     });
 
+    $scope.dismissNotification = function() {
+        $scope.notification = false;
+    }
 });

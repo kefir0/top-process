@@ -26,7 +26,12 @@
             </div>
 
             <div ng-show="notification" class="notification">
-                {{notification}}
+                <div style="float: right">
+                    <a href="#" ng-click="dismissNotification()" class="closeButton">x</a>
+                </div>
+                <div style="margin-right: 20px">
+                    {{notification}}
+                </div>
             </div>
 
             <!-- Main content -->
