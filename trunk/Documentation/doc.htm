@@ -110,10 +110,10 @@
     <p>
         <h2 id="consume">
             <h3 id="consumeServerInfo">Consuming Server Info</h3>
-            ServerInfo is just a HTTP web service that returns information in XML or JSON format, depending on headers. 
+            ServerInfo is just a HTTP web service that returns information in XML or JSON format, depending on Accept request header.
             <ul>
-                <li>View it in browser: </li>
-                <li>View with wget: "wget -qO- http://localhost/TopProcessSvc/api/SystemInfo" </li>
+                <li>View in browser: <a href="http://localhost/TopProcessSvc/api/SystemInfo">http://localhost/TopProcessSvc/api/SystemInfo</a></li>
+                <li>View with wget: "wget -qO- http://localhost/TopProcessSvc/api/SystemInfo" (JSON by default. Force XML: "wget --header "Accept: application/xml" -qO- http://localhost/TopProcessSvc/api/SystemInfo") </li>
                 <li>In C#: new WebClient().DownloadString("http://localhost/TopProcessSvc/api/SystemInfo");</li>
             </ul>
 
