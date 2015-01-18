@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        TopProcessSvc Documentation
+    </title>
+</head>
+<body>
+    <h1>TopProcessSvc Documentation</h1>
+    <p>
+        <ul>
+            <li><a href="#intro">Introduction</a></li>
+            <li><a href="#demo">Demo</a></li>
+            <li>
+                <a href="#deploy">Deployment</a>
+                <ul>
+                    <li><a href="#deployServer">Server Deployment</a></li>
+                    <li><a href="#deployClient">Client Deployment</a></li>
+                </ul>
+            </li>
+            <li>            
+                <a href="#consume">Consuming Service</a>
+                <ul>
+                    <li><a href="#consumeServerInfo">Consuming Server Info</a></li>
+                    <li><a href="#consumeNotifications">Consuming Push Notifications</a></li>
+                </ul>
+            </li>
+        </ul>
+    </p>
+    <h2 id="intro">Introduction</h2>
+    TopProcessSvc is a remote system monitoring service. It consists of two main entry points which can be used independently: 
+    <ul>
+        <li><b>SystemInformation</b>, which provides list of running processes, CPU and memory load on demand</li>
+        <li><b>NotificationHub</b>, which provides push notifications when certain system parameters exceed limits</li>
+    </ul>
+    Server part runs on .NET 4.5 & Microsoft ASP.NET 5. Push notifications are implemented with <a href="http://signalr.net/">SignalR</a> library, which supports multiple transports (WebSockets, ServerSentEvents, LongPolling) and has ready to use clients for various platforms (web, desktop and mobile).
+                                    
+    <h2 id="demo">Demo</h2>                                                               
+    HTML/JS demo interface is included in TopProcessSvc\TopProcessSvc\WebInterface folder. <br/>
+    Live demo can be seen at <a href="http://5.19.249.13:567/TopProcessSvc/WebInterface/index.htm">http://5.19.249.13:567/TopProcessSvc/WebInterface/index.htm</a> 
+    <ul>
+        <li>Click column headers to sort process list</li>
+        <li>Click X button to the right of notification to dismiss it</li>
+    </ul>
+    
+    <img src="screenshot.png" /> <br/><br />
+
+    All modern browsers of latest version are supported, desktop and mobile (tested in latest IE, Chrome, Chrome for Android, Android Browser).<br/>
+    Demo client can be deployed separately from the server, see <a href="#deployClient">Client Deployment</a> section.
+
+
+</body>
+</html>
