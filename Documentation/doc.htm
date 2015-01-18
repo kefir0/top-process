@@ -45,9 +45,32 @@
     
     <img src="screenshot.png" /> <br/><br />
 
-    All modern browsers of latest version are supported, desktop and mobile (tested in latest IE, Chrome, Chrome for Android, Android Browser).<br/>
-    Demo client can be deployed separately from the server, see <a href="#deployClient">Client Deployment</a> section.
+    All modern browsers of latest version are supported, desktop and mobile (tested in latest IE, Chrome, Firefox, Chrome for Android, Android Browser).<br/>
 
 
+    <h2 id="deploy">Deployment</h2>
+    Though demo client is by default included in the server folder and works from there as demonstrated in Live Demo, it can be deployed separately, or used locally by opening index.htm with a browser.
+    <h3>Server Deployment</h3>
+    <b>System Requirements</b>
+    <ul>
+        <li>.NET 4.5</li>
+        <li>IIS 8 (recommended). IIS 7 will work, but it does not support WebSockets for push notifications, so SignalR will fall back to another compatible transport.</li>
+        <li>Visual Studio 2013</li>
+    </ul>
+    <b>Deployment Steps</b>
+    <ol>
+        <li>
+            Configure IIS:
+            <ul>
+                <li>Start IIS Manager (Win+R, inetmgr, enter)</li>
+                <li>Create new Integrated Application Pool with .NET 4.0</li>
+                <li>
+                    Right-click your newly created pool, select Advanced Settings. Change <b>Process Model\Identity</b> option to <b>LocalSystem</b>
+                    <i>Note: this is required to retrieve process information and performance counters. This increases security risk, since web service code will now run under elevated account.</i>
+                </li>
+            </ul>
+        </li>
+
+    </ol>
 </body>
 </html>
