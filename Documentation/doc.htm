@@ -27,50 +27,77 @@
             </li>
         </ul>
     </p>
-    <h2 id="intro">Introduction</h2>
-    TopProcessSvc is a remote system monitoring service. It consists of two main entry points which can be used independently: 
-    <ul>
-        <li><b>SystemInformation</b>, which provides list of running processes, CPU and memory load on demand</li>
-        <li><b>NotificationHub</b>, which provides push notifications when certain system parameters exceed limits</li>
-    </ul>
-    Server part runs on .NET 4.5 & Microsoft ASP.NET 5. Push notifications are implemented with <a href="http://signalr.net/">SignalR</a> library, which supports multiple transports (WebSockets, ServerSentEvents, LongPolling) and has ready to use clients for various platforms (web, desktop and mobile).
-                                    
-    <h2 id="demo">Demo</h2>                                                               
-    HTML/JS demo interface is included in TopProcessSvc\TopProcessSvc\WebInterface folder. <br/>
-    Live demo can be seen at <a href="http://5.19.249.13:567/TopProcessSvc/WebInterface/index.htm">http://5.19.249.13:567/TopProcessSvc/WebInterface/index.htm</a> 
-    <ul>
-        <li>Click column headers to sort process list</li>
-        <li>Click X button to the right of notification to dismiss it</li>
-    </ul>
-    
-    <img src="screenshot.png" /> <br/><br />
+    <p>
+        <h2 id="intro">Introduction</h2>
+        TopProcessSvc is a remote system monitoring service. It consists of two main entry points which can be used independently:
+        <ul>
+            <li><b>SystemInformation</b>, which provides list of running processes, CPU and memory load on demand</li>
+            <li><b>NotificationHub</b>, which provides push notifications when certain system parameters exceed limits</li>
+        </ul>
+        Server part runs on .NET 4.5 & Microsoft ASP.NET 5. Push notifications are implemented with <a href="http://signalr.net/">SignalR</a> library, which supports multiple transports (WebSockets, ServerSentEvents, LongPolling) and has ready to use clients for various platforms (web, desktop and mobile).
+    </p>
+        
+    <p>
+        <h2 id="demo">Demo</h2>
+        HTML/JS demo interface is included in TopProcessSvc\TopProcessSvc\WebInterface folder. <br />
+        Live demo can be seen at <a href="http://5.19.249.13:567/TopProcessSvc/WebInterface/index.htm">http://5.19.249.13:567/TopProcessSvc/WebInterface/index.htm</a>
+        <ul>
+            <li>Click column headers to sort process list</li>
+            <li>Click X button to the right of notification to dismiss it</li>
+        </ul>
 
-    All modern browsers of latest version are supported, desktop and mobile (tested in latest IE, Chrome, Firefox, Chrome for Android, Android Browser).<br/>
+        <img src="screenshot.png" /> <br /><br />
+
+        All modern browsers of latest version are supported, desktop and mobile (tested in latest IE, Chrome, Firefox, Chrome for Android, Android Browser).<br />
+    </p>
 
 
-    <h2 id="deploy">Deployment</h2>
-    Though demo client is by default included in the server folder and works from there as demonstrated in Live Demo, it can be deployed separately, or used locally by opening index.htm with a browser.
-    <h3>Server Deployment</h3>
-    <b>System Requirements</b>
-    <ul>
-        <li>.NET 4.5</li>
-        <li>IIS 8 (recommended). IIS 7 will work, but it does not support WebSockets for push notifications, so SignalR will fall back to another compatible transport.</li>
-        <li>Visual Studio 2013</li>
-    </ul>
-    <b>Deployment Steps</b>
-    <ol>
-        <li>
-            Configure IIS:
-            <ul>
-                <li>Start IIS Manager (Win+R, inetmgr, enter)</li>
-                <li>Create new Integrated Application Pool with .NET 4.0</li>
-                <li>
-                    Right-click your newly created pool, select Advanced Settings. Change <b>Process Model\Identity</b> option to <b>LocalSystem</b>
-                    <i>Note: this is required to retrieve process information and performance counters. This increases security risk, since web service code will now run under elevated account.</i>
-                </li>
-            </ul>
-        </li>
 
-    </ol>
+    <p>
+        <h2 id="deploy">Deployment</h2>
+        Though demo client is by default included in the server folder and works from there as demonstrated in Live Demo, it can be deployed separately, or used locally by opening index.htm with a browser.
+        <h3>Server Deployment</h3>
+        <b>System Requirements</b>
+        <ul>
+            <li>.NET 4.5</li>
+            <li>IIS 8 (recommended). IIS 7 will work, but it does not support WebSockets for push notifications, so SignalR will fall back to another compatible transport.</li>
+            <li>Visual Studio 2013</li>
+            <li>Internet connection</li>
+        </ul>
+        <b>Deployment Steps</b>
+        <ol>
+            <li>
+                Build Solution
+                <ul>
+                    <li>Start Visual Studio 2013 under administrator account (required for IIS interaction)</li>
+                    <li>Open src\TopProcessSvc\TopProcessSvc.sln</li>
+                    <li>Build solution. NuGet packages are not included with source code, they will be downloaded automatically</li>
+                    <li>Open TopProcessSvc project properties. On Web tab, click Create Virtual Directory.</li>
+                </ul>
+            </li>
+            <li>
+                Configure IIS:
+                <ul>
+                    <li>Start IIS Manager (Win+R, inetmgr, enter)</li>
+                    <li>Create new Integrated Application Pool with .NET 4.0</li>
+                    <li>
+                        Right-click your newly created pool, select Advanced Settings. Change <b>Process Model\Identity</b> option to <b>LocalSystem</b>
+                        <br />
+                        <i>Note: this is required to retrieve process information and performance counters. This increases security risk, since web service code will now run under elevated account.</i>
+                    </li>
+                    <li>Configure TopProcessSvc virtual directory (created by Visual Studio) to use newly created elevated application pool.</li>
+                </ul>
+            </li>
+            <li>
+                Check that deployment is successful:
+                <ul>
+                    <li>SystemInfo service should return list of running processes when opened in browser (in XML by default): <a href="http://localhost/TopProcessSvc/api/SystemInfo">http://localhost/TopProcessSvc/api/SystemInfo</a></li>
+                    <li>SignalR returns auto-generated JS file: <a href="http://localhost/TopProcessSvc/signalr/hubs">http://localhost/TopProcessSvc/signalr/hubs</a></li>
+                    <li>WebInterface works: <a href="http://localhost/TopProcessSvc/WebInterface/index.htm">http://localhost/TopProcessSvc/WebInterface/index.htm</a></li>
+                </ul>
+            </li>
+        </ol>
+
+    </p>
 </body>
 </html>
