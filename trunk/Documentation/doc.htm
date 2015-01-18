@@ -56,7 +56,8 @@
     <p>
         <h2 id="deploy">Deployment</h2>
         Though demo client is by default included in the server folder and works from there as demonstrated in Live Demo, it can be deployed separately, or used locally by opening index.htm with a browser.
-        <h3>Server Deployment</h3>
+        
+        <h3 id="deployServer">Server Deployment</h3>
         <b>System Requirements</b>
         <ul>
             <li>.NET 4.5</li>
@@ -98,6 +99,26 @@
             </li>
         </ol>
 
+        <h3 id="deployClient">Client Deployment</h3>
+        <ul>
+            <li>Copy all contents of src\TopProcessSvc\TopProcessSvc\WebInterface directory to the deployment location</li>
+            <li>Point client to a server instance by modifying baseUrl variable at the top of scripts\controllers.js file</li>
+        </ul>
+        Now the client can be accessed by opening index.htm directly in browser, or via any kind of web server.
+    </p>
+
+    <p>
+        <h2 id="consume">
+            <h3 id="consumeServerInfo">Consuming Server Info</h3>
+            ServerInfo is just a HTTP web service that returns information in XML or JSON format, depending on headers. 
+            <ul>
+                <li>View it in browser: </li>
+                <li>View with wget: "wget -qO- http://localhost/TopProcessSvc/api/SystemInfo" </li>
+                <li>In C#: new WebClient().DownloadString("http://localhost/TopProcessSvc/api/SystemInfo");</li>
+            </ul>
+
+            <h3 id="consumeNotifications"></h3>
+        </h2>
     </p>
 </body>
 </html>
