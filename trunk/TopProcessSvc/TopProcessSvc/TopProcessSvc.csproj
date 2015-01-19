@@ -167,7 +167,6 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="WebInterface\scripts\jquery.signalR-2.2.0.min.js" />
     <Content Include="WebInterface\styles\background.jpg" />
-    <Content Include="WebInterface\scripts\angular.js" />
     <Content Include="WebInterface\scripts\angular.min.js" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
