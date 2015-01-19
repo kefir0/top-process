@@ -4,6 +4,17 @@
     <title>
         TopProcessSvc Documentation
     </title>
+    <style type="text/css">
+        h2 {
+            margin-top: 60px;
+        }
+        h3 {
+            margin-top: 30px;
+        }
+
+        /* PrettyPrint styles from Chrome */
+         div.header {    border-bottom: 2px solid black;    padding-bottom: 5px;    margin: 10px;}div.collapsible > div.hidden {    display:none;}.pretty-print {    margin-top: 1em;    margin-left: 20px;    font-family: monospace;    font-size: 13px;}#webkit-xml-viewer-source-xml {    display: none;}.collapsible-content {    margin-left: 1em;}.comment {    white-space: pre;}.button {    -webkit-user-select: none;    cursor: pointer;    display: inline-block;    margin-left: -10px;    width: 10px;    background-repeat: no-repeat;    background-position: left top;    vertical-align: bottom;}.collapse-button {    background-image: -webkit-canvas(arrowDown);    height: 10px;}.expand-button {    background-image: -webkit-canvas(arrowRight);    height: 11px;}
+    </style>
 </head>
 <body>
     <h1>TopProcessSvc Documentation</h1>
@@ -108,7 +119,8 @@
     </p>
 
     <p>
-        <h2 id="consume">
+        <h2 id="consume">Consuming Service</h2>
+        <p>
             <h3 id="consumeServerInfo">Consuming Server Info</h3>
             ServerInfo is just a HTTP web service that returns information in XML or JSON format, depending on Accept request header.
             <ul>
@@ -116,12 +128,52 @@
                 <li>View with wget: "wget -qO- http://localhost/TopProcessSvc/api/SystemInfo" (JSON by default. Force XML: "wget --header "Accept: application/xml" -qO- http://localhost/TopProcessSvc/api/SystemInfo") </li>
                 <li>In C#: new WebClient().DownloadString("http://localhost/TopProcessSvc/api/SystemInfo");</li>
             </ul>
-
+            <b>JSON output sample</b><br/>
+            <pre>
+ {
+   "CpuUsage": 0.23149529,
+   "MemoryTotal": 16758020,
+   "MemoryUsed": 6937956,
+   "Processes": [
+      {
+         "Name": "sqlservr",
+         "Id": 1968,
+         "CpuUsage": 0,
+         "TotalProcessorTime": 6061937.5,
+         "WorkingSet": 13984
+      },
+      {
+         "Name": "svchost",
+         "Id": 1148,
+         "CpuUsage": 0,
+         "TotalProcessorTime": 49125,
+         "WorkingSet": 17780
+      }
+   ],
+   "ServerName": "P-TUPITSYN"
+}
+            </pre>
+            <b>XML output sample</b><br />
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pretty-print"><div class="collapsible" id="collapsible0"><div class="expanded"><div class="line"><span class="button collapse-button"></span><span class="html-tag">&lt;SystemInfo<span class="html-attribute"> <span class="html-attribute-name">xmlns:i</span>="<span class="html-attribute-value">http://www.w3.org/2001/XMLSchema-instance</span>"</span><span class="html-attribute"> <span class="html-attribute-name">xmlns</span>="<span class="html-attribute-value">http://schemas.datacontract.org/2004/07/TopProcessSvc.Models</span>"</span>&gt;</span></div><div class="collapsible-content"><span class="text"></span><div class="line"><span class="html-tag">&lt;CpuUsage&gt;</span><span class="text">0.0439922958612442</span><span class="html-tag">&lt;/CpuUsage&gt;</span></div><span class="text"></span><div class="line"><span class="html-tag">&lt;MemoryTotal&gt;</span><span class="text">16758020</span><span class="html-tag">&lt;/MemoryTotal&gt;</span></div><span class="text"></span><div class="line"><span class="html-tag">&lt;MemoryUsed&gt;</span><span class="text">7021268</span><span class="html-tag">&lt;/MemoryUsed&gt;</span></div><span class="text"></span><div class="collapsible" id="collapsible1"><div class="expanded"><div class="line"><span class="button collapse-button"></span><span class="html-tag">&lt;Processes&gt;</span></div><div class="collapsible-content"><span class="text"></span><div class="collapsible" id="collapsible2"><div class="expanded"><div class="line"><span class="button collapse-button"></span><span class="html-tag">&lt;ProcessInfo&gt;</span></div><div class="collapsible-content"><span class="text"></span><div class="line"><span class="html-tag">&lt;CpuUsage&gt;</span><span class="text">0</span><span class="html-tag">&lt;/CpuUsage&gt;</span></div><span class="text"></span><div class="line"><span class="html-tag">&lt;Id&gt;</span><span class="text">1968</span><span class="html-tag">&lt;/Id&gt;</span></div><span class="text"></span><div class="line"><span class="html-tag">&lt;Name&gt;</span><span class="text">sqlservr</span><span class="html-tag">&lt;/Name&gt;</span></div><span class="text"></span><div class="line"><span class="html-tag">&lt;TotalProcessorTime&gt;</span><span class="text">6067734.375</span><span class="html-tag">&lt;/TotalProcessorTime&gt;</span></div><span class="text"></span><div class="line"><span class="html-tag">&lt;WorkingSet&gt;</span><span class="text">13984</span><span class="html-tag">&lt;/WorkingSet&gt;</span></div><span class="text"></span></div><div class="line"><span class="html-tag">&lt;/ProcessInfo&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button"></span><span class="html-tag">&lt;ProcessInfo&gt;</span><span class="text">...</span><span class="html-tag">&lt;/ProcessInfo&gt;</span></div></div></div><span class="text"></span><div class="collapsible" id="collapsible3"><div class="expanded"><div class="line"><span class="button collapse-button"></span><span class="html-tag">&lt;ProcessInfo&gt;</span></div><div class="collapsible-content"><span class="text"></span><div class="line"><span class="html-tag">&lt;CpuUsage&gt;</span><span class="text">0</span><span class="html-tag">&lt;/CpuUsage&gt;</span></div><span class="text"></span><div class="line"><span class="html-tag">&lt;Id&gt;</span><span class="text">1148</span><span class="html-tag">&lt;/Id&gt;</span></div><span class="text"></span><div class="line"><span class="html-tag">&lt;Name&gt;</span><span class="text">svchost</span><span class="html-tag">&lt;/Name&gt;</span></div><span class="text"></span><div class="line"><span class="html-tag">&lt;TotalProcessorTime&gt;</span><span class="text">49203.125</span><span class="html-tag">&lt;/TotalProcessorTime&gt;</span></div><span class="text"></span><div class="line"><span class="html-tag">&lt;WorkingSet&gt;</span><span class="text">17828</span><span class="html-tag">&lt;/WorkingSet&gt;</span></div><span class="text"></span></div><div class="line"><span class="html-tag">&lt;/ProcessInfo&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button"></span><span class="html-tag">&lt;ProcessInfo&gt;</span><span class="text">...</span><span class="html-tag">&lt;/ProcessInfo&gt;</span></div></div></div><span class="text"></span></div><div class="line"><span class="html-tag">&lt;/Processes&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button"></span><span class="html-tag">&lt;Processes&gt;</span><span class="text">...</span><span class="html-tag">&lt;/Processes&gt;</span></div></div></div><span class="text"></span><div class="line"><span class="html-tag">&lt;ServerName&gt;</span><span class="text">P-TUPITSYN</span><span class="html-tag">&lt;/ServerName&gt;</span></div><span class="text"></span></div><div class="line"><span class="html-tag">&lt;/SystemInfo&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button"></span><span class="html-tag">&lt;SystemInfo<span class="html-attribute"> <span class="html-attribute-name">xmlns:i</span>="<span class="html-attribute-value">http://www.w3.org/2001/XMLSchema-instance</span>"</span><span class="html-attribute"> <span class="html-attribute-name">xmlns</span>="<span class="html-attribute-value">http://schemas.datacontract.org/2004/07/TopProcessSvc.Models</span>"</span>&gt;</span><span class="text">...</span><span class="html-tag">&lt;/SystemInfo&gt;</span></div></div></div></div>
+        </p>
+        <p>
             <h3 id="consumeNotifications">Consuming Push Notifications</h3>
+            Push Notifications are implemented with <a href="http://www.asp.net/signalr">SignalR</a>. Browser (Javascript/HTML) and .NET (Windows Desktop, Windows Store, Windows Mobile, iOS/Android with Xamarin) clients are supported out of the box, please refer to documentation: <a href="http://www.asp.net/signalr">http://www.asp.net/signalr</a>.
+            <ul>
+                <li>SignalR hub name: <b>notificationHub</b></li>
+                <li>SignalR method: <b>broadcastMessage(message)</b></li>
+            </ul>
+            
+            <h4>SignalR protocol explained: Push Notifications on unsupported platforms</h4>
+            Consuming SignalR push notifications on other platforms requires establishing and maintaining connection manually according to protocol.<br/>
+            Below is a language-neutral explanation of SignalR protocol, demonstrated on ServerSentEvents transport. Please refer to documentation and source code for additional details: <a href="https://github.com/SignalR/SignalR">https://github.com/SignalR/SignalR</a>.
+
+
+
             https://github.com/SignalR/SignalR/blob/master/src/Microsoft.AspNet.SignalR.Client.Store/Transports/WebSocketTransport.cs
             http://blogs.microsoft.co.il/ranw/2013/02/17/signalr-protocol/
             See fiddler
-        </h2>
+        </p>
     </p>
 </body>
 </html>
