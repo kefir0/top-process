@@ -177,13 +177,34 @@
             
             <h4>SignalR protocol explained: Push Notifications on unsupported platforms</h4>
             Consuming SignalR push notifications on other platforms requires establishing and maintaining connection manually according to protocol.<br/>
-            Below is a language-neutral explanation of SignalR protocol, demonstrated on ServerSentEvents transport. Please refer to documentation and source code for additional details: <a href="https://github.com/SignalR/SignalR">https://github.com/SignalR/SignalR</a>.
+            Below is a language-neutral explanation of SignalR protocol, demonstrated on ServerSentEvents transport. Please refer to documentation and source code for additional details: <a href="https://github.com/SignalR/SignalR">https://github.com/SignalR/SignalR</a>.<br />
+            Let's say that service is located at <a href="http://localhost/TopProcessSvc">http://localhost/TopProcessSvc</a>:
+            <ol>
+                <li>
+                    <b>Negotiation</b> phase serves two main purposes: identify a suitable transport, and establish a connection token to identify client. We are going to ignore protocol negotiation and use ServerSentEvents, so we only care about token.<br/>
+                    GET <a href="#">http://localhost/TopProcessSvc/signalr/negotiate?clientProtocol=1.5</a> <br/>
+                    Response: {"Url":"/TopProcessSvc/signalr","ConnectionToken":"TOKEN","ConnectionId":"354be231-8b9e-44e0-bd72-093189e6b533","KeepAliveTimeout":20.0,"DisconnectTimeout":30.0,"ConnectionTimeout":110.0,"TryWebSockets":true,"ProtocolVersion":"1.5","TransportConnectTimeout":5.0,"LongPollDelay":0.0} <br/>
+                    <br />
+                </li>
+                <li>
+                    <b>Connection</b> phase establishes a push message stream, using ConnectionToken from previous step, and a hub name (see above) <br/>
+                    GET <a href="#">http://localhost/TopProcessSvc/signalr/connect?transport=serverSentEvents&clientProtocol=1.5&connectionToken=TOKEN&connectionData=[{"name":"notificationhub"}]</a> <br/>
+                    Server keeps this connection open and writes push message data as soon as it is available. Client reads data from this stream. Data format is as follows: <br/>
+                    data: {"C":"d-DC1DD41-B,8|E,0|F,1","M":[{"H":"NotificationHub","M":"broadcastMessage","A":["Memory usage exceeds limit. 6798144 KB used of 16758020 KB total. 40% usage exceeds 20% limit."]}]}
+                    <br /><br />
+                </li>
+                <li>
+                    <b>Start</b> should be called to initiate message push: <br/>
+                    GET <a href="#">http://localhost/TopProcessSvc/signalr/start?transport=serverSentEvents&clientProtocol=1.5&connectionToken=TOKEN&connectionData=[{"name":"notificationhub"}]</a>
+                    <br />
+                </li>
+            </ol>
 
-
-
-            https://github.com/SignalR/SignalR/blob/master/src/Microsoft.AspNet.SignalR.Client.Store/Transports/WebSocketTransport.cs
-            http://blogs.microsoft.co.il/ranw/2013/02/17/signalr-protocol/
-            See fiddler
+<!-- 
+    https://github.com/SignalR/SignalR/blob/master/src/Microsoft.AspNet.SignalR.Client.Store/Transports/WebSocketTransport.cs
+    http://blogs.microsoft.co.il/ranw/2013/02/17/signalr-protocol/
+    See fiddler
+    -->
         </p>
     </p>
 </body>
