@@ -128,6 +128,17 @@
                 <li>View with wget: "wget -qO- http://localhost/TopProcessSvc/api/SystemInfo" (JSON by default. Force XML: "wget --header "Accept: application/xml" -qO- http://localhost/TopProcessSvc/api/SystemInfo") </li>
                 <li>In C#: new WebClient().DownloadString("http://localhost/TopProcessSvc/api/SystemInfo");</li>
             </ul>
+            <b>Data Contract Explained</b>
+            <ul>
+                <li><b>CpuUsage</b>: Total CPU usage, from 0 to 1</li>
+                <li><b>MemoryTotal</b>: Total physical memory, in KB</li>
+                <li><b>MemoryUsed</b>: Used physical memoty, in KB</li>
+                <li><b>ProcessInfo.Name</b>: Process name</li>
+                <li><b>ProcessInfo.Id</b>: Process ID (PID)</li>
+                <li><b>ProcessInfo.CpuUsage</b>: Process CPU usage, from 0 to 1</li>
+                <li><b>ProcessInfo.TotalProcessorTime</b>: Total processor time of the process, in milliseconds</li>
+                <li><b>ProcessInfo.WorkingSet</b>: Process woking set, in KB</li>
+            </ul>
             <b>JSON output sample</b><br/>
             <pre>
  {
