@@ -82,7 +82,7 @@
                 Build Solution
                 <ul>
                     <li>Start Visual Studio 2013 under administrator account (required for IIS interaction)</li>
-                    <li>Open src\TopProcessSvc\TopProcessSvc.sln</li>
+                    <li>Open TopProcessSvc\TopProcessSvc.sln</li>
                     <li>Build solution. NuGet packages are not included with source code, they will be downloaded automatically</li>
                     <li>Open TopProcessSvc project properties. On Web tab, click Create Virtual Directory.</li>
                 </ul>
@@ -112,7 +112,7 @@
 
         <h3 id="deployClient">Client Deployment</h3>
         <ul>
-            <li>Copy all contents of src\TopProcessSvc\TopProcessSvc\WebInterface directory to the deployment location</li>
+            <li>Copy all contents of TopProcessSvc\TopProcessSvc\WebInterface directory to the deployment location</li>
             <li>Point client to a server instance by modifying baseUrl variable at the top of scripts\controllers.js file</li>
         </ul>
         Now the client can be accessed by opening index.htm directly in browser, or via any kind of web server.
@@ -183,14 +183,14 @@
                 <li>
                     <b>Negotiation</b> phase serves two main purposes: identify a suitable transport, and establish a connection token to identify client. We are going to ignore protocol negotiation and use ServerSentEvents, so we only care about token.<br/>
                     GET <a href="#">http://localhost/TopProcessSvc/signalr/negotiate?clientProtocol=1.5</a> <br/>
-                    Response: {"Url":"/TopProcessSvc/signalr","ConnectionToken":"TOKEN","ConnectionId":"354be231-8b9e-44e0-bd72-093189e6b533","KeepAliveTimeout":20.0,"DisconnectTimeout":30.0,"ConnectionTimeout":110.0,"TryWebSockets":true,"ProtocolVersion":"1.5","TransportConnectTimeout":5.0,"LongPollDelay":0.0} <br/>
-                    <br />
+                    <textarea rows="4" cols="150">{"Url":"/TopProcessSvc/signalr","ConnectionToken":"TOKEN","ConnectionId":"354be231-8b9e-44e0-bd72-093189e6b533","KeepAliveTimeout":20.0,"DisconnectTimeout":30.0,"ConnectionTimeout":110.0,"TryWebSockets":true,"ProtocolVersion":"1.5","TransportConnectTimeout":5.0,"LongPollDelay":0.0}</textarea>
+                    <br /><br />
                 </li>
                 <li>
                     <b>Connection</b> phase establishes a push message stream, using ConnectionToken from previous step, and a hub name (see above) <br/>
                     GET <a href="#">http://localhost/TopProcessSvc/signalr/connect?transport=serverSentEvents&clientProtocol=1.5&connectionToken=TOKEN&connectionData=[{"name":"notificationhub"}]</a> <br/>
                     Server keeps this connection open and writes push message data as soon as it is available. Client reads data from this stream. Data format is as follows: <br/>
-                    data: {"C":"d-DC1DD41-B,8|E,0|F,1","M":[{"H":"NotificationHub","M":"broadcastMessage","A":["Memory usage exceeds limit. 6798144 KB used of 16758020 KB total. 40% usage exceeds 20% limit."]}]}
+                    <textarea rows="4" cols="150">data: {"C":"d-DC1DD41-B,8|E,0|F,1","M":[{"H":"NotificationHub","M":"broadcastMessage","A":["Memory usage exceeds limit. 6798144 KB used of 16758020 KB total. 40% usage exceeds 20% limit."]}]}</textarea>
                     <br /><br />
                 </li>
                 <li>
