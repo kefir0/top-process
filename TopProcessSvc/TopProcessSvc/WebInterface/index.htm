@@ -16,7 +16,6 @@
             <h1 class="center">System Monitor</h1>
             <hr/>
 
-            <!-- Initial loading indicator -->
             <div ng-show="loading">
                 Loading process info...
             </div>
@@ -34,7 +33,6 @@
                 </div>
             </div>
 
-            <!-- Main content -->
             <div ng-show="!loading && !error">
                 <div>
                     Machine name: <b>{{systemInfo.ServerName}}</b><br/>
