@@ -198,6 +198,11 @@
                     GET <a href="#">http://localhost/TopProcessSvc/signalr/start?transport=serverSentEvents&clientProtocol=1.5&connectionToken=TOKEN&connectionData=[{"name":"notificationhub"}]</a>
                     <br />
                 </li>
+                <li>
+                    <b>Abort</b> should be called to stop listening:
+                    POST <a href="#">http://localhost/TopProcessSvc/signalr/abort?transport=serverSentEvents&clientProtocol=1.5&connectionToken=TOKEN&connectionData=[{"name":"notificationhub"}]</a>
+                    <br />
+                </li>
             </ol>
 
 <!-- 
